@@ -2,7 +2,8 @@
 #include "ant.h"
 #include<stdio.h>
 //对蚂蚁进行的初始化  
-inline void init(Ant *a){
+Ant* init(){
+	Ant *a = (Ant*)malloc(sizeof(Ant));
 	a->step = 1; //随机化选择初始位置以后 就相当于已经走了一步 
 	a->accu_dis = 0;  //虽然走了一步 但是当前还没累计距离 
 	//用一个for循环将 访问过城市 访问顺序表置为默认值-1 
@@ -19,6 +20,8 @@ inline void init(Ant *a){
 	a->visited[a->curr] = 1;
 	//在访问顺序数组中当前位置 
 	a->order[0] = a->curr;
+	
+	return a;
 } 
 
 int next(Ant *ant, double *p){

@@ -270,3 +270,46 @@
 //	return 0;
 //	
 //} 
+
+#include "config.h"
+#include "acs.h" 
+
+ACS* init_ACS(double *d, double *f, double *df){
+	ACS* acs = (ACS*)malloc(sizeof(ACS));
+	//初始化MAXN只蚂蚁放在蚁群中 
+	for(int i=0;i<MAXN;i++){
+		acs->ants[i] = init(); 
+	}
+	//将数据矩阵传进来 
+	acs->D = d;acs->F=f;acs->DF=df;
+}
+
+void del_ACS(ACS *acs){
+	//先free动态分配的蚂蚁
+	for(int i = 0 ; i < MAXN ; i++){
+		free(acs->ants[i]);
+	} 
+	//再free蚁群 
+	free(acs);
+} 
+
+
+void  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

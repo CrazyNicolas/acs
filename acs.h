@@ -13,7 +13,9 @@ typedef struct {
 }ACS;
 
 //根据MAXN指定的蚁群大小来对蚁群初始化 是通过调用每一只蚂蚁的初始化函数做到的 
-inline void init_ACS(); 
+ACS* init_ACS(double *d, double *f, double *df);
+//删除动态分配的蚁群指针 
+void del_ACS(ACS *);
 
 //acs开始运行运行 
 void run(ACS* acs); 

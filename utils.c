@@ -37,12 +37,13 @@ int read_data(char *path, double *xx, double *yy){ // x是latitude y是longitude
 	}else{
 		return 0;
 	}
+	fclose(fp);
 }
 
 //按照模式和路径读取文件 计算距离矩阵 信息素矩阵  还有信息素-距离综合衡量矩阵 
 int prepare_data(char *path, char* mode, double* d, double *f, double *df){
-	double *xx = (double*)malloc(sizeof(double)*MAXN); // 
-	double *yy = (double*)malloc(sizeof(double)*MAXN);//
+	double *xx = (double*)malloc(sizeof(double)*MAXN); 
+	double *yy = (double*)malloc(sizeof(double)*MAXN);
 	if(read_data(path,xx,yy)){//如果读取坐标文件没有发生错误 
 		if(strcmp(mode,"EUC") == 0){//如果是欧几里得距离计算模式 
 			for(int i = 0 ; i < MAXN; i++){
@@ -77,4 +78,13 @@ int prepare_data(char *path, char* mode, double* d, double *f, double *df){
 	}
 	
 
+} 
+
+void reset_dff(double *d, double *f, double *df){
+	for(int i = 0 ; i <MAXN ; i++){
+		for(int j=0; j < MAXN; j++){
+			*(f+MAXN*i+j) = T0; //每一条路径上信息素都设置为T0
+			*(df+MAXN*i+j) = T0/(pow(*(d+MAXN*i+j),BETA)); //BETA为超参数 
+		}
+	}
 } 

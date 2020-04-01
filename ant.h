@@ -10,7 +10,7 @@ typedef struct{
 	int step; //记录当前已经是第几个城市了 比如一开始当前就是第一个城市了 
 }Ant;
 
-inline void init(Ant *);
+Ant* init();
 int next(Ant *, double *);
 
 #endif 
